@@ -1,0 +1,25 @@
+----------------------------------------------------------------------------------------------------------
+18.04.2022
+--------------
+
+Next steps:
+
+x   1) add and test functions for:
+    x    a) add
+    x    b) subtract
+    x    c) multiply
+    x    d) divide
+
+x   2) add and test function operate which calls one of the functions in  1)  depending on user wish
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+
