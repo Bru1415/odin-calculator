@@ -5,7 +5,7 @@
 Next steps:
 
 x   1) add and test functions for:
-    x    a) add
+    v    a) add
     x    b) subtract
     x    c) multiply
     x    d) divide
