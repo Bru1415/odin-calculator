@@ -50,3 +50,15 @@ const gF_operate = (num1, num2, operator) => {
 
     }
 }
+
+const gE_CalcContainer = document.querySelector('#calc-container');
+const gE_calcDisplay = document.querySelector('#display');
+
+gE_CalcContainer.addEventListener('click',(event) => {
+
+    console.log(event.target.tagName);
+if(event.target.tagName === 'BUTTON'){
+    gE_calcDisplay.textContent = event.target.textContent;
+}
+
+});
