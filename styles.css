@@ -28,6 +28,19 @@ body {
 
 }
 
+.operator{
+    background-color: rgb(244, 178, 10);
+}
+#equals{
+    background-color: rgb(14, 162, 58);
+}
+.sign{
+    background-color: rgb(235, 231, 1);
+}
+#clear-calc{
+    background-color: rgba(255, 68, 0, 0.986);
+}
+
 #calc-container div button {
     margin: 0;
     width: 100%;
@@ -41,6 +54,8 @@ body {
     border: 1px solid black;
     height: 8rem;
     position: relative;
+    overflow: auto;
+    background-color: rgb(163, 163, 163);
 
 }
 
@@ -50,6 +65,7 @@ body {
     bottom: 0.7rem;
     right: 0.7rem;
     font-size: 3rem;
+    overflow: auto;
 }
 
 #zero {
