@@ -1,6 +1,24 @@
 const gF_add = (num1, num2) => {
 
-    return (+num1) + (+num2);
+    let baseNum, baseNum1, baseNum2;
+    try {
+        baseNum1 = num1.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum1 = 0;
+    }
+    try {
+        baseNum2 = num2.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum2 = 0;
+    }
+
+    baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));
+
+    console.log("base: " + baseNum);
+
+    return (num1 * baseNum + num2 * baseNum) / baseNum;
+
+    // return (+num1) + (+num2);
 }
 
 const gF_subtract = (num1, num2) => {
@@ -76,6 +94,7 @@ let isFirstNumberPushed = false;
 let isFirstOperatorPushed = false;
 let isChainedOperationUsed = false;
 let isEqualStepOperationUsed = false;
+let isNumberPadAllowed = true;
 let targetBtn = null;
 let gV_solution = '';
 
@@ -96,6 +115,7 @@ gE_CalcContainer.addEventListener('click', (event) => {
             gV_firstOperand = gV_solution;
             isChainedOperationUsed = false;
             isEqualStepOperationUsed = true;
+            isNumberPadAllowed = false;
 
         } else if (targetBtn.className === 'operator' && isFirstNumberPushed) {
 
@@ -105,6 +125,7 @@ gE_CalcContainer.addEventListener('click', (event) => {
                 gV_operator = targetBtn.textContent;
                 isChainedOperationUsed = true;
                 isEqualStepOperationUsed = false;
+                isNumberPadAllowed = true;
 
             } else if (isChainedOperationUsed) {
 
@@ -144,22 +165,25 @@ gE_CalcContainer.addEventListener('click', (event) => {
 
         } else if (targetBtn.className === 'number') {
 
-            isFirstNumberPushed = true;
+            if (isNumberPadAllowed) {
+                
+                isFirstNumberPushed = true;
 
-            if (gV_solution) {
+                if (gV_solution) {
 
-                gE_calcDisplay.textContent = '';
-                gV_solution = '';
-                gV_secondOperand = '';
-                gV_numberBuffer = '';
+                    gE_calcDisplay.textContent = '';
+                    gV_solution = '';
+                    gV_secondOperand = '';
+                    gV_numberBuffer = '';
+
+                }
+
+                gE_calcDisplay.textContent += targetBtn.textContent;
+                gV_numberBuffer += targetBtn.textContent;
 
             }
 
-            gE_calcDisplay.textContent += targetBtn.textContent;
-            gV_numberBuffer += targetBtn.textContent;
-
         }
-
     }
 
 });
