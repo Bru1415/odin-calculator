@@ -1,3 +1,6 @@
+// the logic for calculating with floating numbers was copied nearly one to one from:    https://gist.github.com/rockagen/9913346
+
+
 const gF_add = (num1, num2) => {
 
     let baseNum, baseNum1, baseNum2;
@@ -23,17 +26,64 @@ const gF_add = (num1, num2) => {
 
 const gF_subtract = (num1, num2) => {
 
-    return (+num1) - (+num2);
+    let baseNum, baseNum1, baseNum2;
+    try {
+        baseNum1 = num1.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum1 = 0;
+    }
+    try {
+        baseNum2 = num2.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum2 = 0;
+    }
+
+    baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));
+
+    console.log("base: " + baseNum);
+
+    return (num1 * baseNum - num2 * baseNum) / baseNum;
+
+    // return (+num1) - (+num2);
 }
 
 const gF_multiply = (num1, num2) => {
 
-    return (+num1) * (+num2);
+    
+    var baseNum = 0;
+		try {
+			baseNum += num1.toString().split(".")[1].length;
+		} catch (e) {
+		}
+		try {
+			baseNum += num2.toString().split(".")[1].length;
+		} catch (e) {
+		}
+		return Number(num1.toString().replace(".", "")) * Number(num2.toString().replace(".", "")) / Math.pow(10, baseNum);
+    
+    // return (+num1) * (+num2);
 }
 
 const gF_divide = (num1, num2) => {
 
-    return (+num1) / (+num2);
+    let baseNum1 = 0, baseNum2 = 0;
+    let baseNum3, baseNum4;
+
+    try {
+        baseNum1 = num1.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum1 = 0;
+    }
+    try {
+        baseNum2 = num2.toString().split(".")[1].length;
+    } catch (e) {
+        baseNum2 = 0;
+    }
+    baseNum3 = Number(num1.toString().replace(".", ""));
+    baseNum4 = Number(num2.toString().replace(".", ""));
+    return (baseNum3 / baseNum4) * (Math.pow(10, baseNum2 - baseNum1));
+
+    // return (+num1) / (+num2);
 }
 
 const gF_operate = (num1, num2, operator) => {
@@ -82,6 +132,7 @@ const gF_clearCalc = () => {
     isEqualStepOperationUsed = false;
     isFirstNumberPushed = false;
     isFirstOperatorPushed = false;
+    isNumberPadAllowed = true;
 }
 
 const gE_CalcContainer = document.querySelector('#calc-container');
